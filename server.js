@@ -4,6 +4,7 @@
 //value
 //value2...
 
+console.log("Commit test");
 
 const WebSocket = require("ws");
 const https = require('https');
