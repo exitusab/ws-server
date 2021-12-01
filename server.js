@@ -4,7 +4,6 @@
 //value
 //value2...
 
-//helllooo
 
 const WebSocket = require("ws");
 const https = require('https');
