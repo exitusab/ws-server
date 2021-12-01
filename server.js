@@ -65,7 +65,6 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "join")
                 {
                     NewConnection(ws, data);
-                    console.log(`New connection from user: ${data.value}`)
                 }
 
 
@@ -94,6 +93,11 @@ wss.on("connection", (ws, request) =>{
                         "value2": 0
                     }));
                 }
+
+                if(data.type == "gameOver")
+                {
+                    GameOver(data);
+                }
                 
     
             } 
@@ -118,6 +122,7 @@ function UnityConnect(ws, message)
 {   
     const data = JSON.parse(message)
 
+
     if(data.id == 99 && data.type == "unityConnect")
     {
         unityConnected = true;
@@ -141,13 +146,13 @@ function UnityConnect(ws, message)
 
 function NewConnection(ws, data)
 {
-    console.log(data.value);
+    //console.log(data.value);
     if(ws == unityWS){ return}
     newId = null;
 
     for (let i = 0; i < MAX_PLAYERS; i++)
     {
-        console.log(clients[i]);
+        //console.log(clients[i]);
         if (clients[i] != null && clients[i].username == data.value)
         {
             ws.send(JSON.stringify({
@@ -169,7 +174,9 @@ function NewConnection(ws, data)
                 "id": newId,
                 "username": data.value};
             clients[newId] = client
+
             console.log(`New connection from user: ${data.value}`)
+
             unityWS.send(JSON.stringify({
                 "type": "newUser",
                 "value": newId,
@@ -255,4 +262,18 @@ function UnityReset()
     unityConnected = false;
     unityWS = null;
 
+}
+
+function GameOver(data)
+{
+    console.log(`Game Over! Your score was: ${data.value}`);
+
+    clients.forEach(c => {
+        if(c != null)
+        {
+            c.connection.send(JSON.stringify({
+                data
+            }))
+        }
+    });
 }
