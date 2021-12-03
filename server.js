@@ -4,7 +4,6 @@
 //value
 //value2...
 
-console.log("Commit test222");
 
 const WebSocket = require("ws");
 const https = require('https');
@@ -97,7 +96,12 @@ wss.on("connection", (ws, request) =>{
 
                 if(data.type == "gameOver")
                 {
-                    GameOver(data);
+                    SendToAll(data);
+                    console.log(`Game Over! Your score was: ${data.value}`);
+                }
+                if(data.type == "rollingScore")
+                {
+                    SendToAll(data);
                 }
                 
     
@@ -265,10 +269,10 @@ function UnityReset()
 
 }
 
-function GameOver(data)
-{
-    console.log(`Game Over! Your score was: ${data.value}`);
 
+
+function SendToAll(data)
+{
     clients.forEach(c => {
         if(c != null)
         {
