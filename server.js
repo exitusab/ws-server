@@ -102,7 +102,7 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "rollingScore")
                 {
                     SendToAll(data);
-                    console.log(`Score: ${data.value}`);
+                    //console.log(`Score: ${data.value}`);
                 }
                 
     
