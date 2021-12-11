@@ -107,12 +107,12 @@ wss.on("connection", (ws, request) =>{
 
                 if(data.type == "gameOver")
                 {
-                    SendToAll(data);
+                    SendToAll(message);
                     console.log(`Game Over! Your score was: ${data.value}`);
                 }
                 if(data.type == "rollingScore")
                 {
-                    SendToAll(data);
+                    //SendToAll(data);
                     //console.log(`Score: ${data.value}`);
                 }
 
@@ -290,9 +290,7 @@ function SendToAll(data)
     clients.forEach(c => {
         if(c != null)
         {
-            c.connection.send(JSON.stringify({
-                data
-            }))
+            c.connection.send(message)
         }
     });
 }
