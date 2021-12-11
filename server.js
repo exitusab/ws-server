@@ -74,6 +74,17 @@ wss.on("connection", (ws, request) =>{
                     UnityReset();
                 }
 
+                if(data.type == "startGame")
+                {
+                    unityWS.send(JSON.stringify({
+                        "id": 0,
+                        "type": "startGame",
+                        "value": 0,
+                        "value2": 0
+                    }));
+                    console.log("Start Game");
+                }
+
                 if(data.type == "moveRight")
                 {
                     unityWS.send(JSON.stringify({
@@ -105,11 +116,7 @@ wss.on("connection", (ws, request) =>{
                     //console.log(`Score: ${data.value}`);
                 }
 
-                if(data.type == "startGame")
-                {
-                    console.log("Start Game");
-                    unityWS.send(message);
-                }
+                
                 
     
             } 
