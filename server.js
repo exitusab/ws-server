@@ -107,7 +107,7 @@ wss.on("connection", (ws, request) =>{
 
                 if(data.type == "gameOver")
                 {
-                    SendToAll(message);
+                    SendToAll(data);
                     console.log(`Game Over! Your score was: ${data.value}`);
                 }
                 if(data.type == "rollingScore")
@@ -285,12 +285,15 @@ function UnityReset()
 
 
 
-function SendToAll(message)
+function SendToAll(data)
 {
     clients.forEach(c => {
         if(c != null)
         {
-            c.connection.send(message)
+            c.connection.send(JSON.stringify({
+                "type": "gameOver",
+                "value": data.value
+            }))
         }
     });
 }
