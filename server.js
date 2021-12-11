@@ -285,7 +285,7 @@ function UnityReset()
 
 
 
-function SendToAll(data)
+function SendToAll(message)
 {
     clients.forEach(c => {
         if(c != null)
