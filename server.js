@@ -104,6 +104,12 @@ wss.on("connection", (ws, request) =>{
                     SendToAll(data);
                     //console.log(`Score: ${data.value}`);
                 }
+
+                if(data.type == "startGame")
+                {
+                    console.log("Start Game");
+                    unityWS.send(message);
+                }
                 
     
             } 
