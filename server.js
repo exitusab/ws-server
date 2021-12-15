@@ -112,7 +112,10 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "username")
                 {
                     unityWS.send(JSON.stringify({
+                        "id": 0,
                         "type": "username",
+                        "value": 0,
+                        "value2": 0,
                         "value3": data.value3
                     }));
                     console.log(data.value3);
