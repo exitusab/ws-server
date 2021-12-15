@@ -115,6 +115,17 @@ wss.on("connection", (ws, request) =>{
                     //SendToAll(data);
                     //console.log(`Score: ${data.value}`);
                 }
+                if(data.type == "username")
+                {
+                    unityWS.send(JSON.stringify({
+                        "id": 0,
+                        "type": "username",
+                        "value": 0,
+                        "value2": 0,
+                        "value3": data.value3
+                    }));
+                    console.log(data.value3);
+                }
 
                 
                 
