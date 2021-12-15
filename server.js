@@ -50,11 +50,23 @@ wss.on("connection", (ws, request) =>{
                 ClientLeaves(ws, message);
                 
             }
+            const data = JSON.parse(message);
+            if(data.type == "username")
+                {
+                    unityWS.send(JSON.stringify({
+                        "type": "username",
+                        "value3": data.value3
+                    }));
+                    console.log(data.value3);
+                }
+            
         } 
         catch(e)
         {
             console.log(`Something went wrong: ${e.data}`);
         }
+
+
 
         if(unityConnected)
         {
@@ -72,17 +84,6 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "unityDisconnect")
                 {
                     UnityReset();
-                }
-
-                if(data.type == "startGame")
-                {
-                    unityWS.send(JSON.stringify({
-                        "id": 0,
-                        "type": "startGame",
-                        "value": 0,
-                        "value2": 0
-                    }));
-                    console.log("Start Game");
                 }
 
                 if(data.type == "moveRight")
@@ -112,11 +113,18 @@ wss.on("connection", (ws, request) =>{
                 }
                 if(data.type == "rollingScore")
                 {
-                    //SendToAll(data);
-                    //console.log(`Score: ${data.value}`);
+                    SendToAll(data);
+                    console.log(`Score: ${data.value}`);
                 }
 
-                
+                if(data.type == "username")
+                {
+                    unityWS.send(JSON.stringify({
+                        "type": "username",
+                        "value3": data.value3
+                    }));
+                    console.log(data.value3);
+                }
                 
     
             } 
@@ -291,8 +299,7 @@ function SendToAll(data)
         if(c != null)
         {
             c.connection.send(JSON.stringify({
-                "type": "gameOver",
-                "value": data.value
+                data
             }))
         }
     });
