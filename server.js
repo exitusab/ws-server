@@ -50,15 +50,7 @@ wss.on("connection", (ws, request) =>{
                 ClientLeaves(ws, message);
                 
             }
-            const data = JSON.parse(message);
-            if(data.type == "username")
-                {
-                    unityWS.send(JSON.stringify({
-                        "type": "username",
-                        "value3": data.value3
-                    }));
-                    console.log(data.value3);
-                }
+            
             
         } 
         catch(e)
