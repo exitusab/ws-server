@@ -48,7 +48,6 @@ wss.on("connection", (ws, request) =>{
             if(JSON.parse(message).type == "disconnect")
             {
                 ClientLeaves(ws, message);
-                
             }
         } 
         catch(e)
@@ -209,8 +208,8 @@ function NewConnection(ws, data)
 
             unityWS.send(JSON.stringify({
                 "type": "newUser",
-                "value": newId,
-                "value2": data.username
+                "id": newId,
+                "value3": data.value
             }));
             break;
         }
