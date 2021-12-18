@@ -143,7 +143,7 @@ wss.on("connection", (ws, request) =>{
 
     ws.on("close", () =>{
         console.log("Client disconnected");
-        ClientLeaves(ws, message);
+        ClientLeaves(ws, null);
     })
 })
 
@@ -246,8 +246,19 @@ function NewConnection(ws, data)
 function ClientLeaves(ws, message)
 {
     const data = JSON.parse(message);
-    clients[data.id] = null;
-    lobbyClients[data.id] = null;
+    clients.forEach(c => {
+        if(c != null && c.connection == ws)
+        {
+            clients[c.id] = null;
+        }
+    });
+    lobbyClients.forEach(c => {
+        if(c != null && c.connection == ws)
+        {
+            clients[c.id] = null;
+        }
+    });
+
     console.log(`Player number ${data.id} has left the server`);
 }
 
