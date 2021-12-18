@@ -10,6 +10,7 @@ const https = require('https');
 const path = require('path');
 const fs = require('fs');
 const { clearScreenDown } = require("readline");
+const { off } = require("process");
 
 const privateKey = fs.readFileSync('ssl-cert/privkey.pem', 'utf8');
 const fullchain = fs.readFileSync('ssl-cert/fullchain.pem', 'utf8');
@@ -260,10 +261,15 @@ function ClientLeaves(ws, message)
             clients[c.id] = null;
         }
     });
-    unityWS.send(JSON.stringify({
-        type: "disconnect",
-        id: j
-    }))
+
+    if(unityWS != null)
+    {
+        unityWS.send(JSON.stringify({
+            type: "disconnect",
+            id: j
+        }))
+    }
+    
     console.log(`Player number ${j} has left the server`);
 }
 
