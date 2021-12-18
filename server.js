@@ -164,6 +164,7 @@ function UnityConnect(ws, message)
             c.connection.send(JSON.stringify({
                 type: "unityConnection",
                 value: unityConnected,
+                multi: data.multi
             }));
         })
         lobbyClients = new Array(MAX_PLAYERS);
