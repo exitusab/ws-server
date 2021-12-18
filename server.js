@@ -245,11 +245,13 @@ function NewConnection(ws, data)
 
 function ClientLeaves(ws, message)
 {
+    let j = 0;
     const data = JSON.parse(message);
     clients.forEach(c => {
         if(c != null && c.connection == ws)
         {
             clients[c.id] = null;
+            j = c.id
         }
     });
     lobbyClients.forEach(c => {
@@ -259,7 +261,7 @@ function ClientLeaves(ws, message)
         }
     });
 
-    console.log(`Player number ${data.id} has left the server`);
+    console.log(`Player number ${j} has left the server`);
 }
 
 function Lobby(ws)
