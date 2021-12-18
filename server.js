@@ -251,8 +251,16 @@ function ClientLeaves(ws, message)
     clients.forEach(c => {
         if(c != null && c.connection == ws)
         {
-            clients[c.id] = null;
             j = c.id
+            console.log(`Player number ${j} has left the server`);
+            clients[c.id] = null;
+            if(unityWS != null)
+            {
+                unityWS.send(JSON.stringify({
+                    type: "disconnect",
+                    id: j
+                }))
+            }
         }
     });
     lobbyClients.forEach(c => {
@@ -262,15 +270,9 @@ function ClientLeaves(ws, message)
         }
     });
 
-    if(unityWS != null)
-    {
-        unityWS.send(JSON.stringify({
-            type: "disconnect",
-            id: j
-        }))
-    }
     
-    console.log(`Player number ${j} has left the server`);
+    
+    
 }
 
 function Lobby(ws)
