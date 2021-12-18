@@ -143,6 +143,7 @@ wss.on("connection", (ws, request) =>{
 
     ws.on("close", () =>{
         console.log("Client disconnected");
+        ClientLeaves(ws, message);
     })
 })
 
