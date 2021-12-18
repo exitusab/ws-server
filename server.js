@@ -83,6 +83,8 @@ wss.on("connection", (ws, request) =>{
                         "value2": 0
                     }));
                     console.log("Start Game");
+
+                    SendToOthers(ws, data);
                 }
 
                 if(data.type == "moveRight")
@@ -333,7 +335,21 @@ function SendToAll(data)
         if(c != null)
         {
             c.connection.send(JSON.stringify({
-                "type": "gameOver",
+                "type": data.type,
+                "value": data.value
+            }))
+        }
+    });
+}
+
+function SendToOthers(ws, data)
+{
+    clients.forEach(c => {
+        if(c != null && c.connection != ws)
+        {
+            c.connection.send(JSON.stringify({
+                "id": data.id,
+                "type": "startMulti",
                 "value": data.value
             }))
         }
