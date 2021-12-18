@@ -160,6 +160,8 @@ function UnityConnect(ws, message)
         console.log("Unity connected!");
         unityWS = ws;
 
+        console.log(`Multi: ${data.multi}`);
+
         lobbyClients.forEach(c => {
             c.connection.send(JSON.stringify({
                 type: "unityConnection",
