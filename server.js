@@ -260,7 +260,10 @@ function ClientLeaves(ws, message)
             clients[c.id] = null;
         }
     });
-
+    unityWS.send(JSON.stringify({
+        type: "disconnect",
+        id: j
+    }))
     console.log(`Player number ${j} has left the server`);
 }
 
