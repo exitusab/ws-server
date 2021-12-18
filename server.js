@@ -77,7 +77,7 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "startGame")
                 {
                     unityWS.send(JSON.stringify({
-                        "id": 0,
+                        "id": data.id,
                         "type": "startGame",
                         "value": 0,
                         "value2": 0
@@ -88,7 +88,7 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "moveRight")
                 {
                     unityWS.send(JSON.stringify({
-                        "id": 0,
+                        "id": data.id,
                         "type": "moveRight",
                         "value": data.value,
                         "value2": 0
@@ -98,7 +98,7 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "moveLeft")
                 {
                     unityWS.send(JSON.stringify({
-                        "id": 0,
+                        "id": data.id,
                         "type": "moveLeft",
                         "value": data.value,
                         "value2": 0
@@ -118,7 +118,7 @@ wss.on("connection", (ws, request) =>{
                 if(data.type == "username")
                 {
                     unityWS.send(JSON.stringify({
-                        "id": 0,
+                        "id": data.id,
                         "type": "username",
                         "value": 0,
                         "value2": 0,
@@ -257,8 +257,11 @@ function ClientLeaves(ws, message)
             if(unityWS != null)
             {
                 unityWS.send(JSON.stringify({
-                    type: "disconnect",
-                    id: j
+                    "id": j,
+                    "type": "disconnect",
+                    "value": 0,
+                    "value2": 0,
+                    "value3": ""
                 }))
             }
         }
