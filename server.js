@@ -163,7 +163,7 @@ function UnityConnect(ws, message)
         unityWS = ws;
 
         console.log(`Multi: ${data.multi}`);
-        isMulti = multi;
+        isMulti = data.multi;
 
         lobbyClients.forEach(c => {
             c.connection.send(JSON.stringify({
