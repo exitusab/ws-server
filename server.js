@@ -30,7 +30,7 @@ const MAX_PLAYERS = 16;
 const clients = new Array(MAX_PLAYERS);
 let lobbyClients = new Array(MAX_PLAYERS);
 
-
+let isMulti = false;
 
 const unityHostId = 99;
 unityConnected = false;
@@ -161,6 +161,7 @@ function UnityConnect(ws, message)
         unityWS = ws;
 
         console.log(`Multi: ${data.multi}`);
+        isMulti = multi;
 
         lobbyClients.forEach(c => {
             c.connection.send(JSON.stringify({
