@@ -74,6 +74,11 @@ wss.on("connection", (ws, request) =>{
                     UnityReset();
                 }
 
+                if(data.type == "multiUsername")
+                {
+                    SentToUnity(data);
+                }
+
                 if(data.type == "startGame")
                 {
                     unityWS.send(JSON.stringify({
@@ -356,4 +361,13 @@ function SendToOthers(ws, data)
             }))
         }
     });
+}
+
+function SentToUnity(data)
+{
+    unityWS.send(JSON.stringify({
+        "id": data.id,
+        "type": data.type,
+        "value3": data.value3
+    }))
 }
