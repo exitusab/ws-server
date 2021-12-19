@@ -306,7 +306,7 @@ function Lobby(ws)
         {
             playerIn +=1;
         }
-        if(playerIn = 5)
+        if(playerIn == 5)
         {
             console.log("Max Players Reached");
             return;
