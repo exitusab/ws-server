@@ -28,7 +28,7 @@ console.log("Server started successfully!");
 const MAX_PLAYERS = 5;
 
 const clients = new Array(MAX_PLAYERS);
-let lobbyClients = new Array(MAX_PLAYERS);
+let lobbyClients = [null,null, null, null, null ];
 
 let isMulti = false;
 
@@ -294,17 +294,17 @@ function ClientLeaves(ws, message)
 
 function Lobby(ws)
 {
-    let maxPlayers = false;
-    
+    let playerIn = 0;
+
     for (let i = 0; i < MAX_PLAYERS; i++)
     {
         if(lobbyClients[i] != null)
         {
-            maxPlayers = false;
+            playerIn +=1;
         }
-        else{
-            maxPlayers = true;
-            console.log("Max players!");
+        if(playerIn = 5)
+        {
+            console.log("Max Players Reached");
             return;
         }
     }
