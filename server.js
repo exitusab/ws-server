@@ -25,7 +25,7 @@ const wss =  new WebSocket.Server({server: httpsServer});
 
 console.log("Server started successfully!");
 
-const MAX_PLAYERS = 16;
+const MAX_PLAYERS = 5;
 
 const clients = new Array(MAX_PLAYERS);
 let lobbyClients = new Array(MAX_PLAYERS);
