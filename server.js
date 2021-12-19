@@ -287,7 +287,9 @@ function ClientLeaves(ws, message)
     lobbyClients.forEach(c => {
         if(c != null && c.connection == ws)
         {
+            
             clients[c.id] = null;
+            c = null;
         }
     });
 
