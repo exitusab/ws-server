@@ -171,11 +171,15 @@ function UnityConnect(ws, message)
         isMulti = data.multi;
 
         lobbyClients.forEach(c => {
-            c.connection.send(JSON.stringify({
-                "type": "unityConnection",
-                "value": unityConnected,
-                "multi": data.multi
-            }));
+            if(c != null)
+            {
+                c.connection.send(JSON.stringify({
+                    "type": "unityConnection",
+                    "value": unityConnected,
+                    "multi": data.multi
+                }));
+            }
+            
         })
         lobbyClients = new Array(MAX_PLAYERS);
     }
