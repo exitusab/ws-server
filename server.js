@@ -302,7 +302,8 @@ function Lobby(ws)
         {
             c.connection.send(JSON.stringify({
                 "type": "init",
-                "value": unityConnected
+                "value": unityConnected,
+                "multi": isMulti
             })) 
         }
            
