@@ -188,23 +188,12 @@ function UnityConnect(ws, message)
 
 function NewConnection(ws, data)
 {
-    let maxPlayers = false;
+    
     //console.log(data.value);
     if(ws == unityWS){ return}
     newId = null;
 
-    for (let i = 0; i < MAX_PLAYERS; i++)
-    {
-        if(client[i] != null)
-        {
-            maxPlayers = false;
-        }
-        else{
-            maxPlayers = true;
-            console.log("Max players!");
-            return;
-        }
-    }
+    
 
     for (let i = 0; i < MAX_PLAYERS; i++)
     {
@@ -305,6 +294,20 @@ function ClientLeaves(ws, message)
 
 function Lobby(ws)
 {
+    let maxPlayers = false;
+    
+    for (let i = 0; i < MAX_PLAYERS; i++)
+    {
+        if(lobbyClients[i] != null)
+        {
+            maxPlayers = false;
+        }
+        else{
+            maxPlayers = true;
+            console.log("Max players!");
+            return;
+        }
+    }
     for (let i = 0; i < MAX_PLAYERS; i++) 
     {
         if(lobbyClients[i] == null)
