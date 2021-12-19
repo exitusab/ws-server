@@ -167,9 +167,9 @@ function UnityConnect(ws, message)
 
         lobbyClients.forEach(c => {
             c.connection.send(JSON.stringify({
-                type: "unityConnection",
-                value: unityConnected,
-                multi: data.multi
+                "type": "unityConnection",
+                "value": unityConnected,
+                "multi": data.multi
             }));
         })
         lobbyClients = new Array(MAX_PLAYERS);
@@ -336,7 +336,8 @@ function SendToAll(data)
         {
             c.connection.send(JSON.stringify({
                 "type": data.type,
-                "value": data.value
+                "value": data.value,
+                "multi": isMulti
             }))
         }
     });
