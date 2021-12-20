@@ -307,25 +307,22 @@ function Lobby(ws)
 
     for (let i = 0; i < MAX_PLAYERS; i++)
     {
+
         if(lobbyClients[i] != null)
         {
             playerIn +=1;
             console.log("player")
         }
-        console.log(lobbyClients[i]);
+        //console.log(lobbyClients[i]);
         
     }
     if(playerIn == 5)
     {
-        console.log("Max Players Reached");
-        ws.send(JSON.stringify({
-            "type": "maxPlayer"
-        }))
+        //console.log("Max Players Reached");
+        
     }
     else{
-        ws.send(JSON.stringify({
-            "type": "spaceAvailable"
-        }))
+        
 
         for (let i = 0; i < MAX_PLAYERS; i++) 
         {
