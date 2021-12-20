@@ -309,7 +309,9 @@ function Lobby(ws)
         {
             playerIn +=1;
         }
-        if(playerIn == 5)
+        
+    }
+    if(playerIn == 5)
         {
             console.log("Max Players Reached");
             ws.send(JSON.stringify({
@@ -322,7 +324,6 @@ function Lobby(ws)
                 "type": "spaceAvailable"
             }))
         }
-    }
     for (let i = 0; i < MAX_PLAYERS; i++) 
     {
         if(lobbyClients[i] == null)
