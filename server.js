@@ -282,7 +282,7 @@ function ClientLeaves(ws, message)
                     "value3": ""
                 }))
             }
-            lobbyClients[c.id] = null;
+            lobbyClients[j] = null;
         }
     });
     lobbyClients.forEach(c => {
