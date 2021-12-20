@@ -326,30 +326,30 @@ function Lobby(ws)
             ws.send(JSON.stringify({
                 "type": "spaceAvailable"
             }))
-        }
-    for (let i = 0; i < MAX_PLAYERS; i++) 
-    {
-        if(lobbyClients[i] == null)
-        {
-            var client = {
-                "connection": ws};
-            lobbyClients[i] = client;
-            break;
-        }
-    }
 
-    lobbyClients.forEach(c => {
-        if(c != null)
-        {
-            c.connection.send(JSON.stringify({
-                "type": "init",
-                "value": unityConnected,
-                "multi": isMulti
-            })) 
+            for (let i = 0; i < MAX_PLAYERS; i++) 
+            {
+                if(lobbyClients[i] == null)
+                {
+                    var client = {
+                        "connection": ws};
+                    lobbyClients[i] = client;
+                    break;
+                }
+            }
+
+            lobbyClients.forEach(c => {
+                if(c != null)
+                {
+                    c.connection.send(JSON.stringify({
+                        "type": "init",
+                        "value": unityConnected,
+                        "multi": isMulti
+                    })) 
+                }
+            });
         }
-           
-        
-    }) ;
+    
 }
 
 
