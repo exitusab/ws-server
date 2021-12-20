@@ -309,6 +309,7 @@ function Lobby(ws)
         {
             playerIn +=1;
         }
+        console.log(lobbyClients[i]);
         
     }
     if(playerIn == 5)
