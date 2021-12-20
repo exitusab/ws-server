@@ -264,7 +264,6 @@ function NewConnection(ws, data)
 
 function ClientLeaves(ws, message)
 {
-    console.log("Left");
     let j = 0;
     const data = JSON.parse(message);
     clients.forEach(c => {
@@ -291,7 +290,7 @@ function ClientLeaves(ws, message)
     lobbyClients.forEach(c => {
         if(c != null && c.connection == ws)
         {
-            
+            console.log("left")
             clients[c.id] = null;
             c = null;
         }
