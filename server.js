@@ -310,6 +310,7 @@ function Lobby(ws)
         if(lobbyClients[i] != null)
         {
             playerIn +=1;
+            console.log("player")
         }
         console.log(lobbyClients[i]);
         
