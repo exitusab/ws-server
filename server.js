@@ -317,6 +317,11 @@ function Lobby(ws)
             }))
             return;
         }
+        else{
+            ws.send(JSON.stringify({
+                "type": "spaceAvailable"
+            }))
+        }
     }
     for (let i = 0; i < MAX_PLAYERS; i++) 
     {
