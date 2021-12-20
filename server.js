@@ -312,6 +312,9 @@ function Lobby(ws)
         if(playerIn == 5)
         {
             console.log("Max Players Reached");
+            ws.send(JSON.stringify({
+                "type": "maxPlayer"
+            }))
             return;
         }
     }
