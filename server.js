@@ -291,8 +291,8 @@ function ClientLeaves(ws, message)
         if(c != null && c.connection == ws)
         {
             console.log("left")
-            clients[c.id] = null;
             c = null;
+            console.log(c);
         }
     });
 
@@ -311,7 +311,7 @@ function Lobby(ws)
         {
             playerIn +=1;
         }
-        console.log(lobbyClients[i]);
+        //console.log(lobbyClients[i]);
         
     }
     if(playerIn == 5)
