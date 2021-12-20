@@ -320,7 +320,7 @@ function Lobby(ws)
             ws.send(JSON.stringify({
                 "type": "maxPlayer"
             }))
-            return;
+            
         }
         else{
             ws.send(JSON.stringify({
