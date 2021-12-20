@@ -290,9 +290,9 @@ function ClientLeaves(ws, message)
     lobbyClients.forEach(c => {
         if(c != null && c.connection == ws)
         {
-            console.log("left")
+            //console.log("left")
             c = null;
-            console.log(c);
+            //console.log(c);
         }
     });
 
@@ -311,7 +311,7 @@ function Lobby(ws)
         if(lobbyClients[i] != null)
         {
             playerIn +=1;
-            console.log("player")
+            //console.log("player")
         }
         //console.log(lobbyClients[i]);
         
