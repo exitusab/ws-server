@@ -282,6 +282,8 @@ function ClientLeaves(ws, message)
                     "value3": ""
                 }))
             }
+
+            console.log(lobbyClients[j])
             lobbyClients[j] = null;
         }
     });
