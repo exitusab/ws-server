@@ -264,6 +264,7 @@ function NewConnection(ws, data)
 
 function ClientLeaves(ws, message)
 {
+    console.log("Left");
     let j = 0;
     const data = JSON.parse(message);
     clients.forEach(c => {
