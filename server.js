@@ -316,40 +316,39 @@ function Lobby(ws)
         
     }
     if(playerIn == 5)
+    {
+        console.log("Max Players Reached");
+        ws.send(JSON.stringify({
+            "type": "maxPlayer"
+        }))
+    }
+    else{
+        ws.send(JSON.stringify({
+            "type": "spaceAvailable"
+        }))
+
+        for (let i = 0; i < MAX_PLAYERS; i++) 
         {
-            console.log("Max Players Reached");
-            ws.send(JSON.stringify({
-                "type": "maxPlayer"
-            }))
-            
-        }
-        else{
-            ws.send(JSON.stringify({
-                "type": "spaceAvailable"
-            }))
-
-            for (let i = 0; i < MAX_PLAYERS; i++) 
+            if(lobbyClients[i] == null)
             {
-                if(lobbyClients[i] == null)
-                {
-                    var client = {
-                        "connection": ws};
-                    lobbyClients[i] = client;
-                    break;
-                }
+                var client = {
+                    "connection": ws};
+                lobbyClients[i] = client;
+                break;
             }
-
-            lobbyClients.forEach(c => {
-                if(c != null)
-                {
-                    c.connection.send(JSON.stringify({
-                        "type": "init",
-                        "value": unityConnected,
-                        "multi": isMulti
-                    })) 
-                }
-            });
         }
+
+        lobbyClients.forEach(c => {
+            if(c != null)
+            {
+                c.connection.send(JSON.stringify({
+                    "type": "init",
+                    "value": unityConnected,
+                    "multi": isMulti
+                })) 
+            }
+        });
+    }
     
 }
 
